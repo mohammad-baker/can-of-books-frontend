@@ -35,6 +35,8 @@ and running
 
 * 12-09-2021 18:00 - Back End of the Application Storage Finished and it's now returning the JSON file from databse when you request /book URL; 
 
+* 12-09-2021 22:30 - Front End Now rendering the books from database Solved by Jehad.
+
 ## Estimates
 
 Number and name of feature: Feature 1. Set up your repositories
@@ -59,13 +61,13 @@ Actual time needed to complete: 90 Minuets
 
 Number and name of feature: 3. Book Component: As a user, I'd like to see my list of books, so that I can track what's impacted me, and what's recommended to me.
 
-Estimate of time needed to complete: 120
+Estimate of time needed to complete: 240 Minuets
 
 Start time: 16:30
 
-Finish time: 18:30
+Finish time: 
 
-Actual time needed to complete: 120
+Actual time needed to complete: 
 
 ## Credit and Collaborations
 
