@@ -1,70 +1,97 @@
-# Getting Started with Create React App
+## **Third Week**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### **Class-11**
 
-## Available Scripts
+<br/>
 
-In the project directory, you can run:
+# Can Of Books App
 
-### `npm start`
+**Author**:  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Jehad Abu Awwad
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Mohammad Baker
 
-### `npm test`
+**Version**: 1.0.0
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Overview
 
-### `npm run build`
+App track what books have impacted the user, and what’s recommended to read next. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The Link for Deployed Version :  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Architecture 
 
-### `npm run eject`
+* In the Front End : React Library 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* In the Backend : NodeJS Engine with Express Framework and MongoDb Database  
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Change Log 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* 12-09-2021 16:00 - Back End of the Application setup Finished and it's deployed 
+and running
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* 12-09-2021 18:00 - Back End of the Application Storage Finished and it's now returning the JSON file from databse when you request /book URL; 
 
-## Learn More
+* 12-09-2021 22:30 - Front End Now rendering the books from database Solved by Jehad.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Estimates
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Number and name of feature: Feature 1. Set up your repositories
 
-### Code Splitting
+Estimate of time needed to complete: 30 Minuets
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Start time: 15:30
 
-### Analyzing the Bundle Size
+Finish time:16:00  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Actual time needed to complete: 30 Minuets
 
-### Making a Progressive Web App
+Number and name of feature: Feature 2. Storage: As a user, I'd like my books to persist, so that whenever I make changes, I can see the my full list of best books.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Estimate of time needed to complete: 120 Minuets
 
-### Advanced Configuration
+Start time: 16:30
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Finish time:18:00
 
-### Deployment
+Actual time needed to complete: 90 Minuets
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Number and name of feature: 3. Book Component: As a user, I'd like to see my list of books, so that I can track what's impacted me, and what's recommended to me.
 
-### `npm run build` fails to minify
+Estimate of time needed to complete: 240 Minuets
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Start time: 16:30
+
+Finish time: 
+
+Actual time needed to complete: 
+
+## Credit and Collaborations
+
+**Logistical** :
+* The Hours Available : 14:00-22:00
+
+* Platform for communiction : Slack, Discord.
+
+* Breaks : 10 Minuets every 50 minutes of work
+
+**Cooperative** :
+
+* **Jehad’s Strengths** : Back-End MVC File Handling Well
+
+* **Mohammad Strengths** : Abiility to Style and design The Front End
+
+**Conflicts Resltuion**
+
+* What will your team do if one person is pulling all the weight while the other person is not contributing?
+
+    - If one of the team membet was working on repo you must notify the other person when he finish work on It in order to pull new changes. 
+
+* How will you approach each other and the challenge of building an application knowing that it is impossible for two people to be at the exact same place in understanding and skill level? 
+
+    - We will hanlde the problem togather and finish it after that we will take a discord session and describe all the hidden patterns we did togather 
+
+------------------------------------------------------------------------------------------------------------------------  
