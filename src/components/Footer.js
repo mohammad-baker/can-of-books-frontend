@@ -12,7 +12,7 @@ export class Footer extends Component {
   <Navbar bg="dark" variant="light">
     <Container>
         
-    <Navbar.Brand>Jehad & mohammad</Navbar.Brand>
+    <Navbar.Brand>Made By Jehad Abu Awwad & Mohammad Baker</Navbar.Brand>
   
     </Container>
   </Navbar>
