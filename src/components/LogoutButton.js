@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
-import Button from 'react-bootstrap/Button'
-export class LogoutButton extends Component {
-    render() {
-        return (
-            <div>
-                                <Button href="#">logout</Button>
+import Button from 'react-bootstrap/Button';
+import { Component } from 'react';
 
-            </div>
-        )
-    }
+class LogoutButton extends Component {
+  render() {
+    return (
+      <div>
+        <Button onClick={this.props.logoutHandler} href='#'>
+          logout
+        </Button>
+      </div>
+    );
+  }
 }
 
-export default LogoutButton
+export default LogoutButton;

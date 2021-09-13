@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 import { Row, Col } from 'react-bootstrap';
@@ -6,17 +6,20 @@ import Container from 'react-bootstrap/Container';
 require('dotenv').config();
 var URL = 'https://jm-can-of-books-backend.herokuapp.com';
 
-const style={
-  width:700,
-  marginTop:25,
-}
-export default class BestBooks extends Component {
+const style = {
+  width: 500,
+  marginTop: 'auto',
+  marginBottom:25,
+};
+class BestBooks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       booksData: [],
     };
   }
+
+  /* DONE: Make a GET request to your API to fetch books for the logged in user  */
   componentDidMount = () => {
     axios
       .get(`${URL}/books`)
@@ -27,37 +30,45 @@ export default class BestBooks extends Component {
   };
 
   render() {
+    /* DONE: render user's books in a Carousel */
     return (
-      <Container >
+      <Container>
         <Row md={1}>
-        <Col sm></Col>
-          <Col  sm>
-            
-            {this.state.booksData.length > 0 && (
+          <Col
+            sm={{ size: 'auto', offset: 0 }}
+            md={{ size: 'auto', offset:3}}
+          >
+            {this.state.booksData.length? (
               <Carousel style={style} itemsToShow={this.state.booksData.length}>
                 {this.state.booksData.map((element) => {
+                 
                   return (
-                    <Carousel.Item  interval={3000}>
-                      <img
-                        className='d-block w-100'
-                        src='https://upload.wikimedia.org/wikipedia/commons/b/b2/A_black_background.jpg'
-                        alt='First slide'
-                      />
+                    
+                    <Carousel.Item interval={3000}>
+                      
                       <Carousel.Caption>
                         <h3>{element.title}</h3>
-                        <p>
-                          {element.description}
-                        </p>
+                        <p>{element.description}</p>
                       </Carousel.Caption>
+                      <img
+                        className='d-block w-100'
+                        src='https://cdn.pixabay.com/photo/2017/06/08/07/20/texture-2382757_960_720.jpg'
+                        alt='First slide'
+                      />
                     </Carousel.Item>
+                    
                   );
                 })}
               </Carousel>
+              
+            ) : (
+              <h2>Book Collection is Empty !(</h2>
             )}
-            </Col>
-       
+          </Col>
         </Row>
       </Container>
     );
   }
 }
+
+export default BestBooks;
