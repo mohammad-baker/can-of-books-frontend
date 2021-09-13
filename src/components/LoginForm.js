@@ -5,16 +5,18 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
 const style = {
-  marginLeft: 530,
+  // marginLeft: "30%",
+  // marginRight: "30%",
   marginTop: 25,
   width: 580,
-  marginBottom: 25,
+  // marginBottom: 25,
 };
 
 export class LoginForm extends Component {
   /* DONE: create a simple login form that collects username and and email, and lets parent component know when form has been submitted */
   render() {
     return (
+      <center>
       <Container md={1} style={style}>
         <Row>
           <Col
@@ -54,6 +56,7 @@ export class LoginForm extends Component {
           </Col>
         </Row>
       </Container>
+      </center>
     );
   }
 }

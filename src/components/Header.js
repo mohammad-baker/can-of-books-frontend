@@ -7,7 +7,7 @@ class Header extends React.Component {
   render() {
     return (
       <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
-        <img style={{marginLeft:250}}
+        <img style={{marginLeft:"10%"}}
           src='https://image.pngaaa.com/626/1220626-middle.png'
           width='60'
           height='60'

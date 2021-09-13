@@ -8,8 +8,9 @@ var URL = 'https://jm-can-of-books-backend.herokuapp.com';
 
 const style = {
   width: 500,
-  marginTop: 'auto',
+  marginTop: 30,
   marginBottom:25,
+
 };
 class BestBooks extends React.Component {
   constructor(props) {
@@ -32,11 +33,12 @@ class BestBooks extends React.Component {
   render() {
     /* DONE: render user's books in a Carousel */
     return (
+      
       <Container>
         <Row md={1}>
           <Col
             sm={{ size: 'auto', offset: 0 }}
-            md={{ size: 'auto', offset:3}}
+            md={{ size: 'auto', offset:4}}
           >
             {this.state.booksData.length? (
               <Carousel style={style} itemsToShow={this.state.booksData.length}>
