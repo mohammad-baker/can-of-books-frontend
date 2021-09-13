@@ -1,37 +1,56 @@
 import React, { Component } from 'react';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
+import Form from 'react-bootstrap/Form';
 import { Row, Col } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 
-const style={
-  marginLeft:100,
-  marginTop:150,
-}
+const style = {
+  marginLeft: 530,
+  marginTop: 25,
+  width: 580,
+  marginBottom: 25,
+};
+
 export class LoginForm extends Component {
+  /* DONE: create a simple login form that collects username and and email, and lets parent component know when form has been submitted */
   render() {
     return (
-      <Container>
-        <Row style={style} md={1}>
-          <Col sm></Col>
-          <Col sm>
-            <InputGroup className='mb-3' style={{ width: '30rem' }}>
-              <InputGroup.Text id='basic-addon1'>@</InputGroup.Text>
-              <FormControl
-                placeholder='Username'
-                aria-label='Username'
-                aria-describedby='basic-addon1'
-              />
-            </InputGroup>
+      <Container md={1} style={style}>
+        <Row>
+          <Col
+            sm={{ size: 'auto', offset: 0 }}
+            md={{ size: 'auto', offset: 1 }}
+          >
+            {this.props.user && (
+              <Form onSubmit={this.props.formSubmit}>
+                <Form.Group className='mb-3' controlId='formBasicEmail'>
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control type='email' placeholder='Enter email' />
+                  <Form.Text className='text-muted'>
+                    We'll never share your email with anyone else.
+                  </Form.Text>
+                </Form.Group>
 
-            <InputGroup className='mb-3' style={{ width: '30rem' }}>
-              <FormControl
-                placeholder="Recipient's username"
-                aria-label="Recipient's username"
-                aria-describedby='basic-addon2'
-              />
-              <InputGroup.Text id='basic-addon2'>@example.com</InputGroup.Text>
-            </InputGroup>
+                <Form.Group className='mb-3' controlId='formBasicPassword'>
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type='password' placeholder='Password' />
+                </Form.Group>
+                <Form.Group className='mb-3' controlId='formBasicCheckbox'>
+                  <Form.Check type='checkbox' label='Check me out' />
+                </Form.Group>
+                <Button variant='primary' type='submit'>
+                  Submit
+                </Button>
+                
+                <Button style={{marginLeft:20}}
+                  variant='primary'
+                  type='submit'
+                  onClick={this.props.formSubmit}
+                >
+                  Close
+                </Button>
+              </Form>
+            )}
           </Col>
         </Row>
       </Container>

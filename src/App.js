@@ -1,42 +1,58 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
+
 import Header from './components/Header';
 import LoginForm from './components/LoginForm';
 import BestBooks from './components/BestBooks';
 import Footer from './components/Footer';
+import Profile from './components/Profile';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-export class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ShowDetails: false,
+      submitted: false,
+      user: false,
     };
+  }
+  loginHandler = (user) => {
+    this.setState({
+      user:!this.state.user,
+    });
+  };
+
+  logoutHandler = () => {
+    this.setState({
+      user: !this.state.user,
+    });
+  };
+
+  formSubmit=()=>{
+    this.setState({
+      submitted: !this.state.submitted,
+    });
   }
   render() {
     return (
-      <div>
-        <Container>
-          <Row style={{ marginTop: 5 }} xs={1} md={1} className='g-4'>
-            <Header />
-            
-          </Row>
-        </Container>
+      <>
+        <Router>
+          <Header loginHandler={this.loginHandler} logoutHandler={this.logoutHandler} user={this.state.user} onLogout={this.logoutHandler} />
+          <Switch>
+            {/* DONE: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
+            <Route exact path='/'>
+              <LoginForm loginHandler={this.loginHandler} formSubmit={this.formSubmit} submitted={this.state.submitted} user={this.state.user}/>
+              {<BestBooks />}
+            </Route>
 
-        <Container>
-          <Row  xs={1} md={2}>
-            <BestBooks />
-            <LoginForm />
-          </Row>
-        </Container>
-
-        <Container>
-          <Row style={{ marginTop: 5 }} xs={1} md={1} className='g-4'>
-            <Footer />
-          </Row>
-        </Container>
-      </div>
+            {/* DONE: add a route with a path of '/profile' that renders a `Profile` component */}
+            <Route exact path='/profile'>
+              <Profile />
+            </Route>
+          </Switch>
+          <Footer />
+        </Router>
+      </>
     );
   }
 }

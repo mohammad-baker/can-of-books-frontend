@@ -1,27 +1,14 @@
-import React, { Component } from 'react'
-import Navbar from 'react-bootstrap/Navbar'
+import React from 'react';
+import Navbar from 'react-bootstrap/Navbar';
 
-import Container from 'react-bootstrap/Container'
-
-export class Footer extends Component {
-    render() {
-        return (
-        
-            <div> 
-        
-  <Navbar bg="dark" variant="light">
-    <Container>
-        
-    <Navbar.Brand>Made By Jehad Abu Awwad & Mohammad Baker</Navbar.Brand>
-  
-    </Container>
-  </Navbar>
- 
-
-            </div>
-      
-        )
-    }
+class Footer extends React.Component {
+  render() {
+    return (
+      <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
+        <Navbar.Brand style={{marginLeft:640}}>Made By Jehad Abu Awwad & Mohammad Baker</Navbar.Brand>
+      </Navbar>
+    );
+  }
 }
 
-export default Footer
+export default Footer;
