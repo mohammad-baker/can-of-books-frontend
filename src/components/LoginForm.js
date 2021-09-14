@@ -55,6 +55,7 @@ export class LoginForm extends Component {
             </Col>
           </Row>
         </Container>
+
       </center>
     );
   }

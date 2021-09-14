@@ -1,19 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import AddBooks from './AddBooks';
 import Button from 'react-bootstrap/Button';
 
 require('dotenv').config();
-var URL = 'https://jm-can-of-books-backend.herokuapp.com';
 
+const URL = 'https://jm-can-of-books-backend.herokuapp.com';
 const style = {
   width: 500,
   marginTop: 30,
   marginBottom: 25,
-  borderRaduis:120,
+
 };
 
 class BestBooks extends React.Component {
@@ -22,8 +22,24 @@ class BestBooks extends React.Component {
     this.state = {
       booksData: [],
       showAddModal: false,
+      showModal: false,
     };
   }
+  handelDeleteBooks = (bookId) => {
+    axios
+      .delete(`${URL}/books/${bookId}`)
+      .then((deleteResponse) => {
+        if (deleteResponse.data.deletedCount === 1) {
+          const newBookArray = this.state.booksData.filter(
+            (Book) => Book._id !== bookId
+          );
+
+          this.setState({ booksData: newBookArray });
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
   handelAddModal = (e) => {
     e.preventDefault();
 
@@ -44,6 +60,7 @@ class BestBooks extends React.Component {
       })
       .catch((error) => console.log(error));
   };
+
   handelDisplayAddModal = () => {
     this.setState({ showAddModal: !this.state.showAddModal });
   };
@@ -59,6 +76,7 @@ class BestBooks extends React.Component {
 
   render() {
     return (
+  
       <div>
         <Button style={{marginLeft:"57%"}} onClick={this.handelDisplayAddModal}>Add Book</Button>
         {this.state.showAddModal && (
