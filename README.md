@@ -35,9 +35,15 @@ and running
 
 * 12-09-2021 18:00 - Back End of the Application Storage Finished and it's now returning the JSON file from databse when you request /book URL; 
 
-* 12-09-2021 22:30 - Front End Now rendering the books from database Solved by Jehad.
+* 13-09-2021 21:30 - Back End of the Application Storage Delete feature Finished and it's now delete data from collection int databse when you request  delete /books URL;
+
+* 13-09-2021 23:30 - Front End of the Application Storage Delete feature Finished and it's now delete data with ueser interface  from collection in the databse when you request  delete /books URL;
+
+* 13-09-2021 23:30 - Front End and Backend of the Application Storage Create feature Finished and it's now Add data with ueser interface into collection in th databse when you request  post /books URL;
 
 ## Estimates
+
+### **Class-11**
 
 Number and name of feature: Feature 1. Set up your repositories
 
@@ -61,13 +67,36 @@ Actual time needed to complete: 90 Minuets
 
 Number and name of feature: 3. Book Component: As a user, I'd like to see my list of books, so that I can track what's impacted me, and what's recommended to me.
 
-Estimate of time needed to complete: 240 Minuets
+Estimate of time needed to complete: 120
 
 Start time: 16:30
 
-Finish time: 
+Finish time: 18:30
 
-Actual time needed to complete: 
+Actual time needed to complete: 120
+
+
+### **Class-12**
+Number and name of feature: 1. Create: As a user, I'd like to add a new book to my shelf, so that I can keep my lists up to date with my latest books and recommendations.
+
+Estimate of time needed to complete: 180 Minuets
+
+Start time: 21:00
+
+Finish time: 24:00  
+
+Actual time needed to complete: 180 Minuets
+
+Number and name of feature: 2. Delete: As a user, I want to remove books from my list, so that only the most important books are on my shelf.
+
+Estimate of time needed to complete: 180 Minuets
+
+Start time: 20:30
+
+Finish time:23:30
+
+Actual time needed to complete: 180 Minuets
+
 
 ## Credit and Collaborations
 
