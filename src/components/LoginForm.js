@@ -17,11 +17,10 @@ export class LoginForm extends Component {
   render() {
     return (
       <center>
-        <Container md={1} style={style}>
+        <Container style={{width:400,marginTop:25}}>
           <Row>
             <Col
-              sm={{ size: 'auto', offset: 0 }}
-              md={{ size: 'auto', offset: 1 }}
+              style={{ marginLeft: '0%' }}
             >
               {this.props.user && (
                 <Form onSubmit={this.props.formSubmit}>

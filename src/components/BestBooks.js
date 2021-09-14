@@ -4,7 +4,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import { Row, Col, Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import AddBooks from './AddBooks';
-
+import UpdateBooks from './UpdateBooks';
 
 require('dotenv').config();
 
@@ -13,7 +13,6 @@ const style = {
   width: 500,
   marginTop: 30,
   marginBottom: 25,
-
 };
 
 class BestBooks extends React.Component {
@@ -22,7 +21,8 @@ class BestBooks extends React.Component {
     this.state = {
       booksData: [],
       showAddModal: false,
-      showModal: false,
+      showUpdateModal: false,
+      selectedBookDataObj: {},
     };
   }
   handelDeleteBooks = (bookId) => {
@@ -61,8 +61,47 @@ class BestBooks extends React.Component {
       .catch((error) => console.log(error));
   };
 
+  handelUpdateModal = (e) => {
+    e.preventDefault();
+    const reqBody = {
+      title: e.target.title.value,
+      description: e.target.description.value,
+      status: e.target.status.value,
+      email: e.target.email.value,
+    };
+    console.log(e);
+
+    axios
+      .put(`${URL}/books/${this.state.selectedCatDataObj._id}`, reqBody)
+      .then((updatedBookObject) => {
+        const updateBookArr = this.state.booksData.map((book) => {
+          if (book._id === this.state.selectedBookDataObj._id) {
+            book = updatedBookObject.data;
+
+            return book;
+          }
+          return book;
+        });
+
+        this.setState({
+          booksData: updateBookArr,
+          selectedBookDataObj: {},
+        });
+
+        this.handelDisplayUpdateModal();
+      })
+      .catch((error) => console.log(error));
+  };
+
   handelDisplayAddModal = () => {
     this.setState({ showAddModal: !this.state.showAddModal });
+  };
+
+  handelDisplayUpdateModal = (bookObj) => {
+    this.setState({
+      showUpdateModal: !this.state.showUpdateModal,
+      selectedBookDataObj: bookObj,
+    });
   };
 
   componentDidMount = () => {
@@ -76,23 +115,33 @@ class BestBooks extends React.Component {
 
   render() {
     return (
-  
       <div>
-        <Button style={{marginLeft:"57%"}} onClick={this.handelDisplayAddModal}>Add Book</Button>
-        {this.state.showAddModal && (
-          <>
-            <AddBooks
-              show={this.state.showAddModal}
-              handelAddModal={this.handelAddModal}
-              handelDisplayAddModal={this.handelDisplayAddModal}
-            />
-          </>
-        )}
         <Container>
+          {this.state.showAddModal && (
+            <>
+              <AddBooks
+                show={this.state.showAddModal}
+                handelAddModal={this.handelAddModal}
+                handelDisplayAddModal={this.handelDisplayAddModal}
+              />
+            </>
+          )}
+        </Container>
+        <Container>
+          {this.state.showUpdateModal && (
+            <>
+              <UpdateBooks
+                show={this.state.showUpdateModal}
+                handelUpdateModal={this.handelUpdateModal}
+                handelDisplayUpdateModal={this.handelDisplayUpdateModal}
+                selectedBookDataObj={this.state.selectedBookDataObj}
+              />
+            </>
+          )}
+        </Container>
+        <Container style={{ marginLeft: '36%', width: 400 }}>
           <Row md={1}>
-            <Col
-              style={{marginLeft:"29%"}}
-            >
+            <Col>
               {this.state.booksData.length ? (
                 <Carousel
                   style={style}
@@ -104,14 +153,55 @@ class BestBooks extends React.Component {
                         <Carousel.Caption>
                           <h3>{element.title}</h3>
                           <p>{element.description}</p>
-                          <Button
-                          variant='danger'
-                          style={{ marginBottom: 25 }}
-                          onClick={() => this.handelDeleteBooks(element._id)}
-                        >
-                          Delete
-                        </Button>
-                        
+
+                          <Container
+                            style={{
+                              marginLeft: '9%',
+                            }}
+                          >
+                            <Row>
+                              <Col xs={1}>
+                                <Button
+                                  variant='success'
+                                  onClick={this.handelDisplayAddModal}
+                                >
+                                  Add Book
+                                </Button>
+                              </Col>
+
+                              <Col
+                                style={{
+                                  marginLeft: '15%',
+                                }}
+                                xs={1}
+                              >
+                                <Button
+                                  onClick={() =>
+                                    this.handelDisplayUpdateModal(element)
+                                  }
+                                >
+                                  Update Book
+                                </Button>
+                              </Col>
+
+                              <Col
+                                style={{
+                                  marginLeft: '20%',
+                                }}
+                                xs={1}
+                              >
+                                <Button
+                                  variant='danger'
+                                  style={{ marginBottom: 25 }}
+                                  onClick={() =>
+                                    this.handelDeleteBooks(element._id)
+                                  }
+                                >
+                                  Delete Book
+                                </Button>
+                              </Col>
+                            </Row>
+                          </Container>
                         </Carousel.Caption>
                         <img
                           className='d-block w-100'

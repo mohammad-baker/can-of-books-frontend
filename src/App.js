@@ -42,7 +42,7 @@ class App extends React.Component {
             user={this.state.user}
             onLogout={this.logoutHandler}
           />
-          <Row style={{ marginTop: 5 }} xs={1} md={1} className='g-4'>
+          
             <Switch>
               {/* DONE: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
               <Route exact path='/'>
@@ -60,7 +60,7 @@ class App extends React.Component {
                 <Profile />
               </Route>
             </Switch>
-          </Row>
+         
           <Footer />
         </Router>
       
