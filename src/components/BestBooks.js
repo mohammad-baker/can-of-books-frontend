@@ -50,7 +50,6 @@ class BestBooks extends React.Component {
       email: e.target.email.value,
     };
 
-    console.log(reqBody);
     axios
       .post(`${URL}/books`, reqBody)
       .then((creatBookObject) => {
@@ -64,15 +63,14 @@ class BestBooks extends React.Component {
   handelUpdateModal = (e) => {
     e.preventDefault();
     const reqBody = {
-      title: e.target.title.value,
-      description: e.target.description.value,
-      status: e.target.status.value,
-      email: e.target.email.value,
+      title: this.state.selectedBookDataObj.title,
+      description: this.state.selectedBookDataObj.description,
+      status: this.state.selectedBookDataObj.status,
+      email: this.state.selectedBookDataObj.email,
     };
-    console.log(e);
 
     axios
-      .put(`${URL}/books/${this.state.selectedCatDataObj._id}`, reqBody)
+      .put(`${URL}/books/${this.state.selectedBookDataObj._id}`, reqBody)
       .then((updatedBookObject) => {
         const updateBookArr = this.state.booksData.map((book) => {
           if (book._id === this.state.selectedBookDataObj._id) {

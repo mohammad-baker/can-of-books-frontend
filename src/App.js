@@ -6,7 +6,6 @@ import BestBooks from './components/BestBooks';
 import Footer from './components/Footer';
 import Profile from './components/Profile';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Row from 'react-bootstrap/Row';
 class App extends React.Component {
   constructor(props) {
     super(props);

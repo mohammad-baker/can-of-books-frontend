@@ -10,7 +10,6 @@ export class UpdateBooks extends Component {
         show={this.props.show}
         onHide={this.props.handelDisplayUpdateModal}
       >
-
         <Modal.Body>
           <Form onSubmit={this.props.handelUpdateModal}>
             <Form.Group className='mb-3'>
