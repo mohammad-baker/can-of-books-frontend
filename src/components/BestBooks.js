@@ -4,7 +4,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import { Row, Col, Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import AddBooks from './AddBooks';
-import Button from 'react-bootstrap/Button';
+
 
 require('dotenv').config();
 
@@ -104,6 +104,14 @@ class BestBooks extends React.Component {
                         <Carousel.Caption>
                           <h3>{element.title}</h3>
                           <p>{element.description}</p>
+                          <Button
+                          variant='danger'
+                          style={{ marginBottom: 25 }}
+                          onClick={() => this.handelDeleteBooks(element._id)}
+                        >
+                          Delete
+                        </Button>
+                        
                         </Carousel.Caption>
                         <img
                           className='d-block w-100'
