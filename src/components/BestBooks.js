@@ -3,6 +3,9 @@ import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 import { Row, Col, Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
+import AddBooks from './AddBooks';
+import Button from 'react-bootstrap/Button';
+
 require('dotenv').config();
 
 const URL = 'https://jm-can-of-books-backend.herokuapp.com';
@@ -17,6 +20,7 @@ class BestBooks extends React.Component {
     super(props);
     this.state = {
       booksData: [],
+      showAddModal: false,
       showModal: false,
     };
   }
@@ -35,7 +39,27 @@ class BestBooks extends React.Component {
       .catch((error) => console.log(error));
   };
 
-  /* DONE: Make a GET request to your API to fetch books for the logged in user  */
+  handelAddModal = (e) => {
+    e.preventDefault();
+
+    const reqBody = {
+      title: e.target.title.value,
+      description: e.target.description.value,
+      status: e.target.status.value,
+      email: e.target.email.value,
+    }
+    
+    axios.post(`${process.env.URL}/books`, reqBody).then(creatBookObject => {
+      this.state.booksData.push(creatBookObject.data); 
+      this.setState({ booksData: this.state.booksData }); 
+      this.handelDisplayAddModal(); 
+    }).catch(() => alert("Something went wrong!"));
+  }
+  
+  handelDisplayAddModal = () => {
+    this.setState({ showAddModal: !this.state.showAddModal });
+  }
+
   componentDidMount = () => {
     axios
       .get(`${URL}/books`)
@@ -46,10 +70,26 @@ class BestBooks extends React.Component {
   };
 
   render() {
-    /* DONE: render user's books in a Carousel */
+
     return (
-      <Container>
-        <Row md={1}>
+  
+      <div>
+       
+       <Button onClick={this.handelDisplayAddModal}>
+          Adding books
+        </Button>
+        {
+          this.state.showAddModal &&(
+          <>
+            <AddBooks
+              show={this.state.showAddModal}
+              handelAddModal={this.handelAddModal}
+              handelDisplayAddModal={this.handelDisplayAddModal}
+            />
+          </>
+        )}
+        <Container>
+          <Row md={1}>
           <Col
             sm={{ size: 'auto', offset: 0 }}
             md={{ size: 'auto', offset: 4 }}
@@ -87,6 +127,7 @@ class BestBooks extends React.Component {
           </Col>
         </Row>
       </Container>
+      </div>
     );
   }
 }
