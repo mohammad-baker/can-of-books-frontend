@@ -4,13 +4,14 @@ import LogoutButton from './LogoutButton';
 import { Navbar, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
-
+import { withAuth0 } from '@auth0/auth0-react';
 class Header extends React.Component {
   render() {
+    const isAuth = this.props.auth0.isAuthenticated;
     return (
       <div>
         <Navbar
-          style={{ padding: 10  , marginTop: '4%' }}
+          style={{ padding: 10, marginTop: '4%' }}
           sm='auto'
           collapseOnSelect
           expand='lg'
@@ -27,9 +28,13 @@ class Header extends React.Component {
             src='https://image.pngaaa.com/626/1220626-middle.png'
             rounded
           />
-          <Navbar.Brand style={{
-              margin:'auto'
-            }}>Books Can</Navbar.Brand>
+          <Navbar.Brand
+            style={{
+              margin: 'auto',
+            }}
+          >
+            Books Can
+          </Navbar.Brand>
 
           <NavItem>
             <Link className='nav-link' to='/'>
@@ -37,26 +42,25 @@ class Header extends React.Component {
             </Link>
           </NavItem>
 
-          {this.props.user && (
+          {isAuth && (
             <NavItem>
-              <Link style={{
-              marginLeft:-10
-            }}className='nav-link' to='/profile'>
-                Profile
+              <Link
+                style={{
+                  marginLeft: -10,
+                }}
+                className='nav-link'
+                to='/profile'
+              >
+                My Profile
               </Link>
             </NavItem>
           )}
 
-          {!this.props.user && (
-            <LoginButton   loginHandler={this.props.loginHandler} />
-          )}
-          {this.props.user && (
-            <LogoutButton logoutHandler={this.props.logoutHandler} />
-          )}
+          {isAuth ? <LogoutButton /> : <LoginButton />}
         </Navbar>
       </div>
     );
   }
 }
 
-export default Header;
+export default withAuth0(Header);

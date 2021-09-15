@@ -4,9 +4,12 @@ import Carousel from 'react-bootstrap/Carousel';
 import { Row, Col, Button } from 'react-bootstrap';
 import AddBooks from './AddBooks';
 import UpdateBooks from './UpdateBooks';
-
+import { withAuth0 } from '@auth0/auth0-react';
 require('dotenv').config();
 var BACK_END_URL = 'http://jm-can-of-books-backend.herokuapp.com';
+
+
+const BACK_END_URL = process.env.BACK_END_URL;
 
 const style = {
   width: 'auto',
@@ -26,6 +29,15 @@ class BestBooks extends React.Component {
       selectedBookDataObj: {},
     };
   }
+  handelDisplayAddModal = () => {
+    this.setState({ showAddModal: !this.state.showAddModal });
+  };
+  handelDisplayUpdateModal = (bookObj) => {
+    this.setState({
+      showUpdateModal: !this.state.showUpdateModal,
+      selectedBookDataObj: bookObj,
+    });
+  };
   handelDeleteBooks = (bookId) => {
     axios
       .delete(`${BACK_END_URL}/books/${bookId}`)
@@ -46,7 +58,7 @@ class BestBooks extends React.Component {
       title: e.target.title.value,
       description: e.target.description.value,
       status: e.target.status.value,
-      email: e.target.email.value,
+      email: this.props.auth0.email,
     };
     axios
       .post(`${BACK_END_URL}/books`, reqBody)
@@ -89,6 +101,7 @@ class BestBooks extends React.Component {
       .catch((error) => console.log(error));
   };
 
+
   handelDisplayAddModal = () => {
     this.setState({ showAddModal: !this.state.showAddModal });
   };
@@ -98,9 +111,10 @@ class BestBooks extends React.Component {
       selectedBookDataObj: bookObj,
     });
   };
-  componentDidMount = async() => {
-    await axios
+  componentDidMount = () => {
+     axios
       .get(`${BACK_END_URL}/books`)
+
       .then((bookResponse) => {
         this.setState({ booksData: bookResponse.data });
       })
@@ -192,4 +206,4 @@ class BestBooks extends React.Component {
   }
 }
 
-export default BestBooks;
+export default withAuth0(BestBooks);

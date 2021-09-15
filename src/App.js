@@ -1,12 +1,13 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';
-import LoginForm from './components/LoginForm';
+import Login from './components/Login';
 import BestBooks from './components/BestBooks';
 import Footer from './components/Footer';
 import Profile from './components/Profile';
 import { Row, Col, Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { withAuth0 } from '@auth0/auth0-react';
 import './App.css';
 
 class App extends React.Component {
@@ -35,6 +36,7 @@ class App extends React.Component {
     });
   };
   render() {
+    const isAuth = this.props.auth0.isAuthenticated;
     return (
       <Container>
       <Router>
@@ -52,25 +54,12 @@ class App extends React.Component {
           <Route exact path='/'>
             <Row>
               <Col style={{ marginTop: 10 }} md={{ span: 5, offset: 2 }}>
-                {<BestBooks />}
-              </Col>
-              <Col
-                style={{ marginTop: 20, marginBottom: 20 }}
-                xs={{ span: 10, order: 'last', offset: 1 }}
-                md={{ span: 3, offset: 0 }}
-                sm={3}
-              >
-                <LoginForm
-                  loginHandler={this.loginHandler}
-                  formSubmit={this.formSubmit}
-                  submitted={this.state.submitted}
-                  user={this.state.user}
-                />
+               {isAuth ? <BestBooks /> : <Login/>}
               </Col>
             </Row>
           </Route>
           <Route exact path='/profile'>
-            <Profile />
+            {isAuth && <Profile />}
           </Route>
         </Switch>
         <Row>
@@ -84,4 +73,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withAuth0(App);
