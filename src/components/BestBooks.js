@@ -6,7 +6,8 @@ import AddBooks from './AddBooks';
 import UpdateBooks from './UpdateBooks';
 
 require('dotenv').config();
-const BACK_END_URL = process.env.BACK_END_URL;
+var BACK_END_URL = process.env.BACK_END_URL;
+
 const style = {
   width: 'auto',
   height: 'auto',
@@ -95,12 +96,13 @@ class BestBooks extends React.Component {
     });
   };
   componentDidMount = () => {
+    console.log(BACK_END_URL)
     axios
       .get(`${BACK_END_URL}/books`)
       .then((bookResponse) => {
         this.setState({ booksData: bookResponse.data });
       })
-      .catch((error) => alert(error.message));
+      .catch((error) => console.log(error));
   };
 
   render() {
