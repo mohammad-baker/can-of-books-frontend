@@ -6,7 +6,7 @@ import AddBooks from './AddBooks';
 import UpdateBooks from './UpdateBooks';
 
 require('dotenv').config();
-var BACK_END_URL = process.env.BACK_END_URL;
+var BACK_END_URL = `https://jm-can-of-books-backend.herokuapp.com`;
 
 const style = {
   width: 'auto',
