@@ -6,8 +6,7 @@ import AddBooks from './AddBooks';
 import UpdateBooks from './UpdateBooks';
 
 require('dotenv').config();
-
-const URL = 'https://jm-can-of-books-backend.herokuapp.com';
+const BACK_END_URL = process.env.BACK_END_URL;
 const style = {
   width: 'auto',
   height: 'auto',
@@ -28,7 +27,7 @@ class BestBooks extends React.Component {
   }
   handelDeleteBooks = (bookId) => {
     axios
-      .delete(`${URL}/books/${bookId}`)
+      .delete(`${BACK_END_URL}/books/${bookId}`)
       .then((deleteResponse) => {
         if (deleteResponse.data.deletedCount === 1) {
           const newBookArray = this.state.booksData.filter(
@@ -49,7 +48,7 @@ class BestBooks extends React.Component {
       email: e.target.email.value,
     };
     axios
-      .post(`${URL}/books`, reqBody)
+      .post(`${BACK_END_URL}/books`, reqBody)
       .then((creatBookObject) => {
         this.state.booksData.push(creatBookObject.data);
         this.setState({ booksData: this.state.booksData });
@@ -67,7 +66,7 @@ class BestBooks extends React.Component {
       email: e.target.email.value,
     };
     axios
-      .put(`${URL}/books/${this.state.selectedBookDataObj._id}`, reqBody)
+      .put(`${BACK_END_URL}/books/${this.state.selectedBookDataObj._id}`, reqBody)
       .then((updatedBookObject) => {
         const updateBookArr = this.state.booksData.map((book) => {
           if (book._id === this.state.selectedBookDataObj._id) {
@@ -97,7 +96,7 @@ class BestBooks extends React.Component {
   };
   componentDidMount = () => {
     axios
-      .get(`${URL}/books`)
+      .get(`${BACK_END_URL}/books`)
       .then((bookResponse) => {
         this.setState({ booksData: bookResponse.data });
       })
