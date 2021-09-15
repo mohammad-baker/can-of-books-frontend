@@ -5,7 +5,7 @@ import LoginForm from './components/LoginForm';
 import BestBooks from './components/BestBooks';
 import Footer from './components/Footer';
 import Profile from './components/Profile';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 
@@ -36,9 +36,10 @@ class App extends React.Component {
   };
   render() {
     return (
+      <Container>
       <Router>
-        <Row style={{ marginTop: 0 }}>
-          <Col md={{ span: 6, offset: 3 }}>
+        <Row >
+          <Col md={{ span: 8, offset: 2 }}>
             <Header
               loginHandler={this.loginHandler}
               logoutHandler={this.logoutHandler}
@@ -50,13 +51,13 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/'>
             <Row>
-              <Col style={{ marginTop: 10 }} md={{ span: 4, offset: 3 }}>
+              <Col style={{ marginTop: 10 }} md={{ span: 5, offset: 2 }}>
                 {<BestBooks />}
               </Col>
               <Col
                 style={{ marginTop: 20, marginBottom: 20 }}
                 xs={{ span: 10, order: 'last', offset: 1 }}
-                md={{ span: 2, offset: 0 }}
+                md={{ span: 3, offset: 0 }}
                 sm={3}
               >
                 <LoginForm
@@ -73,11 +74,12 @@ class App extends React.Component {
           </Route>
         </Switch>
         <Row>
-          <Col md={{ span: 6, offset: 3 }}>
+          <Col md={{ span: 8, offset: 2 }}>
             <Footer />
           </Col>
         </Row>
       </Router>
+      </Container>
     );
   }
 }

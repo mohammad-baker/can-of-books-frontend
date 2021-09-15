@@ -12,6 +12,9 @@ const style = {
   width: 'auto',
   height: 'auto',
 };
+var sectionStyle = {
+  color :'white',
+};
 
 class BestBooks extends React.Component {
   constructor(props) {
@@ -171,7 +174,7 @@ class BestBooks extends React.Component {
             })}
           </Carousel>
         ) : (
-          <div>
+          <div style={sectionStyle}>
             <h2 style={{ marginTop: 50 }}>Book Collection is Empty</h2>
 
             <Button

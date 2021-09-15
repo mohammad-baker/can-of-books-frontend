@@ -7,7 +7,7 @@ var sectionStyle = {
   backgroundImage: `url(https://www.teahub.io/photos/full/271-2719234_free-photo-backgrounds-web-page-background.jpg)`,
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
-  minHeight:900,
+  minHeight:912,
 };
 ReactDOM.render(
   <React.StrictMode>

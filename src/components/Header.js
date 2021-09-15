@@ -10,7 +10,7 @@ class Header extends React.Component {
     return (
       <div>
         <Navbar
-          style={{ padding: 5, marginTop: '4%' }}
+          style={{ padding: 10  , marginTop: '4%' }}
           sm='auto'
           collapseOnSelect
           expand='lg'
@@ -21,13 +21,15 @@ class Header extends React.Component {
             style={{
               width: 50,
               height: 50,
-              marginRight: 4,
-              marginLeft: 3,
+              marginRight: 2,
+              marginLeft: 2,
             }}
             src='https://image.pngaaa.com/626/1220626-middle.png'
             rounded
           />
-          <Navbar.Brand>Books Can</Navbar.Brand>
+          <Navbar.Brand style={{
+              margin:'auto'
+            }}>Books Can</Navbar.Brand>
 
           <NavItem>
             <Link className='nav-link' to='/'>
@@ -37,14 +39,16 @@ class Header extends React.Component {
 
           {this.props.user && (
             <NavItem>
-              <Link className='nav-link' to='/profile'>
+              <Link style={{
+              marginLeft:-10
+            }}className='nav-link' to='/profile'>
                 Profile
               </Link>
             </NavItem>
           )}
 
           {!this.props.user && (
-            <LoginButton loginHandler={this.props.loginHandler} />
+            <LoginButton   loginHandler={this.props.loginHandler} />
           )}
           {this.props.user && (
             <LogoutButton logoutHandler={this.props.logoutHandler} />
