@@ -43,8 +43,17 @@ export class AddBooks extends Component {
                   placeholder='Enter your Email'
                 />
               </Form.Group>
-              <Button onClick={this.props.handelDisplayAddModal}variant='secondary'>Close</Button>
-              <Button style={{marginLeft:10}}variant='primary' type='submit'>
+              <Button
+                onClick={this.props.handelDisplayAddModal}
+                variant='secondary'
+              >
+                Close
+              </Button>
+              <Button
+                style={{ marginLeft: 10 }}
+                variant='primary'
+                type='submit'
+              >
                 Insert Book !
               </Button>
             </Form>

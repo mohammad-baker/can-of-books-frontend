@@ -4,11 +4,19 @@ import Navbar from 'react-bootstrap/Navbar';
 class Footer extends React.Component {
   render() {
     return (
-      <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
-        <Navbar.Brand style={{ marginLeft: "37%" }}>
-          Made By Jehad Abu Awwad & Mohammad Baker
-        </Navbar.Brand>
-      </Navbar>
+      <div>
+        <Navbar
+          style={{ marginTop: 10 }}
+          collapseOnSelect
+          expand='lg'
+          bg='dark'
+          variant='dark'
+        >
+          <Navbar.Brand style={{ marginLeft: 'auto', marginRight:'auto' }}>
+            Jehad Abu Awwad & Mohammad Baker
+          </Navbar.Brand>
+        </Navbar>
+      </div>
     );
   }
 }

@@ -4,25 +4,13 @@ import { Row, Col } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
-const style = {
-  // marginLeft: "30%",
-  // marginRight: "30%",
-  marginTop: 25,
-  width: 580,
-  // marginBottom: 25,
-};
-
 export class LoginForm extends Component {
-  /* DONE: create a simple login form that collects username and and email, and lets parent component know when form has been submitted */
   render() {
     return (
       <center>
-        <Container md={1} style={style}>
+        <Container style={{ marginTop:50,width:400,marginLeft:-10}}>
           <Row>
-            <Col
-              sm={{ size: 'auto', offset: 0 }}
-              md={{ size: 'auto', offset: 1 }}
-            >
+            <Col>
               {this.props.user && (
                 <Form onSubmit={this.props.formSubmit}>
                   <Form.Group className='mb-3' controlId='formBasicEmail'>
@@ -32,16 +20,13 @@ export class LoginForm extends Component {
                       We'll never share your email with anyone else.
                     </Form.Text>
                   </Form.Group>
-
                   <Form.Group className='mb-3' controlId='formBasicPassword'>
                     <Form.Label>Password</Form.Label>
                     <Form.Control type='password' placeholder='Password' />
                   </Form.Group>
-                  
                   <Button variant='primary' type='submit'>
                     Submit
                   </Button>
-
                   <Button
                     style={{ marginLeft: 20 }}
                     variant='primary'
@@ -55,7 +40,6 @@ export class LoginForm extends Component {
             </Col>
           </Row>
         </Container>
-
       </center>
     );
   }
