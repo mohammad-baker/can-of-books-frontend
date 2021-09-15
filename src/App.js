@@ -5,7 +5,9 @@ import LoginForm from './components/LoginForm';
 import BestBooks from './components/BestBooks';
 import Footer from './components/Footer';
 import Profile from './components/Profile';
+import { Row, Col } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import './App.css'
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -33,36 +35,37 @@ class App extends React.Component {
   };
   render() {
     return (
-      
-        <Router>
-          <Header
-            loginHandler={this.loginHandler}
-            logoutHandler={this.logoutHandler}
-            user={this.state.user}
-            onLogout={this.logoutHandler}
-          />
-          
-            <Switch>
-              {/* DONE: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
-              <Route exact path='/'>
+      <Router>
+        <Header
+          loginHandler={this.loginHandler}
+          logoutHandler={this.logoutHandler}
+          user={this.state.user}
+          onLogout={this.logoutHandler}
+        />
+        <Switch>
+          <Route exact path='/'>
+            <Row>
+              <Col xs={{ order: 1 }} md={{ span: 4, offset: 0 }}>
                 <LoginForm
                   loginHandler={this.loginHandler}
                   formSubmit={this.formSubmit}
                   submitted={this.state.submitted}
                   user={this.state.user}
                 />
+              </Col>
+              <Col sm='auto' md={{ span: 6, offset: 2 }}>
                 {<BestBooks />}
-              </Route>
+              </Col>
+            </Row>
+          </Route>
 
-              {/* DONE: add a route with a path of '/profile' that renders a `Profile` component */}
-              <Route exact path='/profile'>
-                <Profile />
-              </Route>
-            </Switch>
-         
-          <Footer />
-        </Router>
-      
+          <Route exact path='/profile'>
+            <Profile />
+          </Route>
+        </Switch>
+
+        <Footer />
+      </Router>
     );
   }
 }

@@ -13,56 +13,51 @@ export class UpdateBooks extends Component {
         <Modal.Body>
           <Form onSubmit={this.props.handelUpdateModal}>
             <Form.Group className='mb-3'>
-              <Form.Label>Book Title</Form.Label>
+              <Form.Label>Title</Form.Label>
               <Form.Control
                 type='text'
-                name='BookTitle'
-                placeholder='Enter Book Title'
+                name='title'
+                placeholder='Enter Cat Name'
                 defaultValue={this.props.selectedBookDataObj.title}
               />
             </Form.Group>
             <Form.Group className='mb-3'>
-              <Form.Label>Book Description</Form.Label>
+              <Form.Label>Cat Breed</Form.Label>
               <Form.Control
                 type='text'
-                name=' BookDescription'
-                placeholder='Enter Book Description'
+                name='description'
+                placeholder='Enter Cat Breed'
                 defaultValue={this.props.selectedBookDataObj.description}
               />
             </Form.Group>
             <Form.Group className='mb-3'>
-              <Form.Label>Book Availability Status</Form.Label>
+              <Form.Label>Cat Image</Form.Label>
               <Form.Control
                 type='text'
-                name='BookStatus'
-                placeholder='Enter Book Availability Status'
+                name='status'
+                placeholder='Enter Cat Image'
                 defaultValue={this.props.selectedBookDataObj.status}
               />
             </Form.Group>
             <Form.Group className='mb-3'>
-              <Form.Label>Email</Form.Label>
+              <Form.Label>Cat Image</Form.Label>
               <Form.Control
                 type='text'
-                name='Email'
-                placeholder='Enter Your Email'
+                name='email'
+                placeholder='Enter Cat Image'
                 defaultValue={this.props.selectedBookDataObj.email}
               />
             </Form.Group>
-            <Form.Group>
-              <Button
-                onClick={this.props.handelDisplayUpdateModal}
-                variant='secondary'
-              >
-                Close
-              </Button>
-              <Button
-                style={{ marginLeft: 10 }}
-                variant='primary'
-                type='submit'
-              >
-                Update Book Information !
-              </Button>
-            </Form.Group>
+            <Button
+              variant='primary'
+              type='button'
+              onClick={this.props.handelDisplayUpdateModal}
+            >
+              Close
+            </Button>
+            <Button style={{ marginLeft: 20 }} variant='primary' type='submit'>
+              Update!
+            </Button>
           </Form>
         </Modal.Body>
       </Modal>

@@ -7,9 +7,7 @@ export class LoginButton extends Component {
       loginClicked: false,
     };
   }
-
   render() {
-    /* DONE: Render a button with label 'Log In'. When the button is clicked then show LoginForm instead */
     return (
       <div>
         <Button href='#' onClick={this.props.loginHandler}>

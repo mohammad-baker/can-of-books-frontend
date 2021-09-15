@@ -10,9 +10,12 @@ require('dotenv').config();
 
 const URL = 'https://jm-can-of-books-backend.herokuapp.com';
 const style = {
-  width: 500,
-  marginTop: 30,
-  marginBottom: 25,
+  width: 'auto' ,
+  // height: 'auto',
+  marginTop: 5,
+  marginRight: 30,
+  marginLeft:-15
+
 };
 
 class BestBooks extends React.Component {
@@ -39,17 +42,14 @@ class BestBooks extends React.Component {
       })
       .catch((error) => console.log(error));
   };
-
   handelAddModal = (e) => {
     e.preventDefault();
-
     const reqBody = {
       title: e.target.title.value,
       description: e.target.description.value,
       status: e.target.status.value,
       email: e.target.email.value,
     };
-
     axios
       .post(`${URL}/books`, reqBody)
       .then((creatBookObject) => {
@@ -63,12 +63,11 @@ class BestBooks extends React.Component {
   handelUpdateModal = (e) => {
     e.preventDefault();
     const reqBody = {
-      title: this.state.selectedBookDataObj.title,
-      description: this.state.selectedBookDataObj.description,
-      status: this.state.selectedBookDataObj.status,
-      email: this.state.selectedBookDataObj.email,
+      title: e.target.title.value,
+      description: e.target.description.value,
+      status: e.target.status.value,
+      email: e.target.email.value,
     };
-
     axios
       .put(`${URL}/books/${this.state.selectedBookDataObj._id}`, reqBody)
       .then((updatedBookObject) => {
@@ -80,12 +79,10 @@ class BestBooks extends React.Component {
           }
           return book;
         });
-
         this.setState({
           booksData: updateBookArr,
           selectedBookDataObj: {},
         });
-
         this.handelDisplayUpdateModal();
       })
       .catch((error) => console.log(error));
@@ -94,14 +91,12 @@ class BestBooks extends React.Component {
   handelDisplayAddModal = () => {
     this.setState({ showAddModal: !this.state.showAddModal });
   };
-
   handelDisplayUpdateModal = (bookObj) => {
     this.setState({
       showUpdateModal: !this.state.showUpdateModal,
       selectedBookDataObj: bookObj,
     });
   };
-
   componentDidMount = () => {
     axios
       .get(`${URL}/books`)
@@ -113,7 +108,7 @@ class BestBooks extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <Container>
           {this.state.showAddModal && (
             <>
@@ -137,9 +132,9 @@ class BestBooks extends React.Component {
             </>
           )}
         </Container>
-        <Container style={{ marginLeft: '36%', width: 400 }}>
-          <Row md={1}>
-            <Col>
+        <Container>
+          <Row>
+            <Col sm={50} md={50}>
               {this.state.booksData.length ? (
                 <Carousel
                   style={style}
@@ -151,55 +146,40 @@ class BestBooks extends React.Component {
                         <Carousel.Caption>
                           <h3>{element.title}</h3>
                           <p>{element.description}</p>
-
-                          <Container
-                            style={{
-                              marginLeft: '9%',
-                            }}
-                          >
-                            <Row>
-                              <Col xs={1}>
-                                <Button
-                                  variant='success'
-                                  onClick={this.handelDisplayAddModal}
-                                >
-                                  Add Book
-                                </Button>
-                              </Col>
-
-                              <Col
-                                style={{
-                                  marginLeft: '15%',
-                                }}
-                                xs={1}
+                          <Row xs={3} md={3}>
+                            <Col>
+                              <Button
+                                variant='success'
+                                onClick={this.handelDisplayAddModal}
                               >
-                                <Button
-                                  onClick={() =>
-                                    this.handelDisplayUpdateModal(element)
-                                  }
-                                >
-                                  Update Book
-                                </Button>
-                              </Col>
+                                Add New Book
+                              </Button>
+                            </Col>
 
-                              <Col
-                                style={{
-                                  marginLeft: '20%',
-                                }}
-                                xs={1}
+                            <Col>
+                              <Button
+                                onClick={() =>
+                                  this.handelDisplayUpdateModal(element)
+                                }
                               >
-                                <Button
-                                  variant='danger'
-                                  style={{ marginBottom: 25 }}
-                                  onClick={() =>
-                                    this.handelDeleteBooks(element._id)
-                                  }
-                                >
-                                  Delete Book
-                                </Button>
-                              </Col>
-                            </Row>
-                          </Container>
+                                Update Book
+                              </Button>
+                            </Col>
+
+                            <Col>
+                              <Button
+                                style={{
+                                  margin: 'auto%',
+                                }}
+                                variant='danger'
+                                onClick={() =>
+                                  this.handelDeleteBooks(element._id)
+                                }
+                              >
+                                Delete Book
+                              </Button>
+                            </Col>
+                          </Row>
                         </Carousel.Caption>
                         <img
                           className='d-block w-100'
@@ -211,12 +191,25 @@ class BestBooks extends React.Component {
                   })}
                 </Carousel>
               ) : (
-                <h2>Book Collection is Empty !(</h2>
+                <div>
+                  <h2 style={{ marginTop: 50 }}>Book Collection is Empty</h2>
+                  <Row>
+                    <Col xs={1}>
+                      <Button
+                        variant='success'
+                        onClick={this.handelDisplayAddModal}
+                        style={{ marginBottom: 25 }}
+                      >
+                        Add Book
+                      </Button>
+                    </Col>
+                  </Row>
+                </div>
               )}
             </Col>
           </Row>
         </Container>
-      </div>
+      </>
     );
   }
 }
