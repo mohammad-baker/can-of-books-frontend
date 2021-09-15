@@ -6,8 +6,11 @@ import AddBooks from './AddBooks';
 import UpdateBooks from './UpdateBooks';
 import { withAuth0 } from '@auth0/auth0-react';
 require('dotenv').config();
+var BACK_END_URL = 'http://jm-can-of-books-backend.herokuapp.com';
+
 
 const BACK_END_URL = process.env.BACK_END_URL;
+
 const style = {
   width: 'auto',
   height: 'auto',
@@ -98,9 +101,20 @@ class BestBooks extends React.Component {
       .catch((error) => console.log(error));
   };
 
+
+  handelDisplayAddModal = () => {
+    this.setState({ showAddModal: !this.state.showAddModal });
+  };
+  handelDisplayUpdateModal = (bookObj) => {
+    this.setState({
+      showUpdateModal: !this.state.showUpdateModal,
+      selectedBookDataObj: bookObj,
+    });
+  };
   componentDidMount = () => {
-    axios
-      .get(`${BACK_END_URL}/books/${this.props.auth0.user.email}`)
+     axios
+      .get(`${BACK_END_URL}/books`)
+
       .then((bookResponse) => {
         this.setState({ booksData: bookResponse.data });
       })
