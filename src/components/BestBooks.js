@@ -6,14 +6,14 @@ import AddBooks from './AddBooks';
 import UpdateBooks from './UpdateBooks';
 
 require('dotenv').config();
-var BACK_END_URL = process.env.BACK_END_URL;
+var BACK_END_URL = 'http://jm-can-of-books-backend.herokuapp.com';
 
 const style = {
   width: 'auto',
   height: 'auto',
 };
 var sectionStyle = {
-  color :'white',
+  color: 'white',
 };
 
 class BestBooks extends React.Component {
@@ -67,7 +67,10 @@ class BestBooks extends React.Component {
       email: e.target.email.value,
     };
     axios
-      .put(`${BACK_END_URL}/books/${this.state.selectedBookDataObj._id}`, reqBody)
+      .put(
+        `${BACK_END_URL}/books/${this.state.selectedBookDataObj._id}`,
+        reqBody
+      )
       .then((updatedBookObject) => {
         const updateBookArr = this.state.booksData.map((book) => {
           if (book._id === this.state.selectedBookDataObj._id) {
@@ -96,7 +99,6 @@ class BestBooks extends React.Component {
     });
   };
   componentDidMount = () => {
-    console.log(BACK_END_URL)
     axios
       .get(`${BACK_END_URL}/books`)
       .then((bookResponse) => {
@@ -143,33 +145,31 @@ class BestBooks extends React.Component {
                     <h3>{element.title}</h3>
                     <p>{element.description}</p>
                     <Row>
-                    <Col style={{margin:'auto'}}>
-                    <Button
-                      variant='success'
-                      onClick={this.handelDisplayAddModal}
-                    >
-                      Add Book
-                    </Button>
-                    </Col>
-                    <Col>
-                    <Button
-                      onClick={() => this.handelDisplayUpdateModal(element)}
-                    >
-                      Update Book
-                    </Button>
-                    </Col>
-                    <Col>
-                    <Button
-                      
-                      variant='danger'
-                      onClick={() => this.handelDeleteBooks(element._id)}
-                    >
-                      Delete Book
-                    </Button>
-                    </Col>
+                      <Col style={{ margin: 'auto' }}>
+                        <Button
+                          variant='success'
+                          onClick={this.handelDisplayAddModal}
+                        >
+                          Add Book
+                        </Button>
+                      </Col>
+                      <Col>
+                        <Button
+                          onClick={() => this.handelDisplayUpdateModal(element)}
+                        >
+                          Update Book
+                        </Button>
+                      </Col>
+                      <Col>
+                        <Button
+                          variant='danger'
+                          onClick={() => this.handelDeleteBooks(element._id)}
+                        >
+                          Delete Book
+                        </Button>
+                      </Col>
                     </Row>
                   </Carousel.Caption>
-                  
                 </Carousel.Item>
               );
             })}
