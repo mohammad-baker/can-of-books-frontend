@@ -10,7 +10,7 @@ class Header extends React.Component {
     return (
       <div>
         <Navbar
-          style={{ padding: 5, marginTop: 100 }}
+          style={{ padding: 5, marginTop: '4%' }}
           sm='auto'
           collapseOnSelect
           expand='lg'
