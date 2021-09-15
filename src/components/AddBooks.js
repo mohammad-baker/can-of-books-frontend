@@ -6,9 +6,6 @@ export class AddBooks extends Component {
     return (
       <div>
         <Modal show={this.props.show} onHide={this.props.handelDisplayAddModal}>
-          <Modal.Header>
-            <Modal.Title>ADD a Book</Modal.Title>
-          </Modal.Header>
           <Modal.Body>
             <Form onSubmit={this.props.handelAddModal}>
               <Form.Group className='mb-3'>

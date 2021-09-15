@@ -3,10 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+var sectionStyle = {
+  backgroundImage: `url(https://www.teahub.io/photos/full/271-2719234_free-photo-backgrounds-web-page-background.jpg)`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  minHeight:900,
+};
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <div style={sectionStyle}>
+      <App />
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );

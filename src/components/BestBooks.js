@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 import { Row, Col, Button } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
 import AddBooks from './AddBooks';
 import UpdateBooks from './UpdateBooks';
 
@@ -10,12 +9,8 @@ require('dotenv').config();
 
 const URL = 'https://jm-can-of-books-backend.herokuapp.com';
 const style = {
-  width: 'auto' ,
-  // height: 'auto',
-  marginTop: 5,
-  marginRight: 30,
-  marginLeft:-15
-
+  width: 'auto',
+  height: 'auto',
 };
 
 class BestBooks extends React.Component {
@@ -109,106 +104,85 @@ class BestBooks extends React.Component {
   render() {
     return (
       <>
-        <Container>
-          {this.state.showAddModal && (
-            <>
-              <AddBooks
-                show={this.state.showAddModal}
-                handelAddModal={this.handelAddModal}
-                handelDisplayAddModal={this.handelDisplayAddModal}
-              />
-            </>
-          )}
-        </Container>
-        <Container>
-          {this.state.showUpdateModal && (
-            <>
-              <UpdateBooks
-                show={this.state.showUpdateModal}
-                handelUpdateModal={this.handelUpdateModal}
-                handelDisplayUpdateModal={this.handelDisplayUpdateModal}
-                selectedBookDataObj={this.state.selectedBookDataObj}
-              />
-            </>
-          )}
-        </Container>
-        <Container>
-          <Row>
-            <Col sm={50} md={50}>
-              {this.state.booksData.length ? (
-                <Carousel
-                  style={style}
-                  itemsToShow={this.state.booksData.length}
-                >
-                  {this.state.booksData.map((element) => {
-                    return (
-                      <Carousel.Item interval={3000}>
-                        <Carousel.Caption>
-                          <h3>{element.title}</h3>
-                          <p>{element.description}</p>
-                          <Row xs={3} md={3}>
-                            <Col>
-                              <Button
-                                variant='success'
-                                onClick={this.handelDisplayAddModal}
-                              >
-                                Add New Book
-                              </Button>
-                            </Col>
+        {this.state.showAddModal && (
+          <>
+            <AddBooks
+              show={this.state.showAddModal}
+              handelAddModal={this.handelAddModal}
+              handelDisplayAddModal={this.handelDisplayAddModal}
+            />
+          </>
+        )}
 
-                            <Col>
-                              <Button
-                                onClick={() =>
-                                  this.handelDisplayUpdateModal(element)
-                                }
-                              >
-                                Update Book
-                              </Button>
-                            </Col>
+        {this.state.showUpdateModal && (
+          <>
+            <UpdateBooks
+              show={this.state.showUpdateModal}
+              handelUpdateModal={this.handelUpdateModal}
+              handelDisplayUpdateModal={this.handelDisplayUpdateModal}
+              selectedBookDataObj={this.state.selectedBookDataObj}
+            />
+          </>
+        )}
 
-                            <Col>
-                              <Button
-                                style={{
-                                  margin: 'auto%',
-                                }}
-                                variant='danger'
-                                onClick={() =>
-                                  this.handelDeleteBooks(element._id)
-                                }
-                              >
-                                Delete Book
-                              </Button>
-                            </Col>
-                          </Row>
-                        </Carousel.Caption>
-                        <img
-                          className='d-block w-100'
-                          src='https://cdn.pixabay.com/photo/2017/06/08/07/20/texture-2382757_960_720.jpg'
-                          alt='First slide'
-                        />
-                      </Carousel.Item>
-                    );
-                  })}
-                </Carousel>
-              ) : (
-                <div>
-                  <h2 style={{ marginTop: 50 }}>Book Collection is Empty</h2>
-                  <Row>
-                    <Col xs={1}>
-                      <Button
-                        variant='success'
-                        onClick={this.handelDisplayAddModal}
-                        style={{ marginBottom: 25 }}
-                      >
-                        Add Book
-                      </Button>
+        {this.state.booksData.length ? (
+          <Carousel style={style} itemsToShow={this.state.booksData.length}>
+            {this.state.booksData.map((element) => {
+              return (
+                <Carousel.Item interval={3000}>
+                  <img
+                    className='d-block w-100'
+                    src='https://cdn.pixabay.com/photo/2017/06/08/07/20/texture-2382757_960_720.jpg'
+                    alt='First slide'
+                  />
+                  <Carousel.Caption>
+                    <h3>{element.title}</h3>
+                    <p>{element.description}</p>
+                    <Row>
+                    <Col style={{margin:'auto'}}>
+                    <Button
+                      variant='success'
+                      onClick={this.handelDisplayAddModal}
+                    >
+                      Add Book
+                    </Button>
                     </Col>
-                  </Row>
-                </div>
-              )}
-            </Col>
-          </Row>
-        </Container>
+                    <Col>
+                    <Button
+                      onClick={() => this.handelDisplayUpdateModal(element)}
+                    >
+                      Update Book
+                    </Button>
+                    </Col>
+                    <Col>
+                    <Button
+                      
+                      variant='danger'
+                      onClick={() => this.handelDeleteBooks(element._id)}
+                    >
+                      Delete Book
+                    </Button>
+                    </Col>
+                    </Row>
+                  </Carousel.Caption>
+                  
+                </Carousel.Item>
+              );
+            })}
+          </Carousel>
+        ) : (
+          <div>
+            <h2 style={{ marginTop: 50 }}>Book Collection is Empty</h2>
+
+            <Button
+              variant='success'
+              onClick={this.handelDisplayAddModal}
+              style={{ marginBottom: 25 }}
+            >
+              Add Book
+            </Button>
+          </div>
+        )}
       </>
     );
   }

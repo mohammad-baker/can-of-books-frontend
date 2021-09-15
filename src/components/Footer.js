@@ -12,7 +12,7 @@ class Footer extends React.Component {
           bg='dark'
           variant='dark'
         >
-          <Navbar.Brand style={{ marginLeft: 'auto', marginRight:'auto' }}>
+          <Navbar.Brand style={{ marginLeft: 'auto', marginRight: 'auto', }}>
             Jehad Abu Awwad & Mohammad Baker
           </Navbar.Brand>
         </Navbar>
