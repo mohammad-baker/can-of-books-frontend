@@ -11,7 +11,7 @@ class Header extends React.Component {
     return (
       <div>
         <Navbar
-          style={{ padding: 10  , marginTop: '4%' }}
+          style={{ padding: 10, marginTop: '4%' }}
           sm='auto'
           collapseOnSelect
           expand='lg'
@@ -28,9 +28,13 @@ class Header extends React.Component {
             src='https://image.pngaaa.com/626/1220626-middle.png'
             rounded
           />
-          <Navbar.Brand style={{
-              margin:'auto'
-            }}>Books Can</Navbar.Brand>
+          <Navbar.Brand
+            style={{
+              margin: 'auto',
+            }}
+          >
+            Books Can
+          </Navbar.Brand>
 
           <NavItem>
             <Link className='nav-link' to='/'>
@@ -38,26 +42,25 @@ class Header extends React.Component {
             </Link>
           </NavItem>
 
-          {isAuth  && (
+          {isAuth && (
             <NavItem>
-              <Link style={{
-              marginLeft:-10
-            }}className='nav-link' to='/profile'>
-              my   Profile
+              <Link
+                style={{
+                  marginLeft: -10,
+                }}
+                className='nav-link'
+                to='/profile'
+              >
+                My Profile
               </Link>
             </NavItem>
           )}
 
-        
-    
-    {
-    isAuth ? <LogoutButton /> :<LoginButton/>
-    }    
+          {isAuth ? <LogoutButton /> : <LoginButton />}
         </Navbar>
       </div>
     );
   }
 }
-
 
 export default withAuth0(Header);

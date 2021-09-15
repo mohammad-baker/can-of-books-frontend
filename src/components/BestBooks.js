@@ -4,16 +4,16 @@ import Carousel from 'react-bootstrap/Carousel';
 import { Row, Col, Button } from 'react-bootstrap';
 import AddBooks from './AddBooks';
 import UpdateBooks from './UpdateBooks';
-
+import { withAuth0 } from '@auth0/auth0-react';
 require('dotenv').config();
 
-const URL = 'https://jm-can-of-books-backend.herokuapp.com';
+const BACK_END_URL = process.env.BACK_END_URL;
 const style = {
   width: 'auto',
   height: 'auto',
 };
 var sectionStyle = {
-  color :'white',
+  color: 'white',
 };
 
 class BestBooks extends React.Component {
@@ -26,9 +26,18 @@ class BestBooks extends React.Component {
       selectedBookDataObj: {},
     };
   }
+  handelDisplayAddModal = () => {
+    this.setState({ showAddModal: !this.state.showAddModal });
+  };
+  handelDisplayUpdateModal = (bookObj) => {
+    this.setState({
+      showUpdateModal: !this.state.showUpdateModal,
+      selectedBookDataObj: bookObj,
+    });
+  };
   handelDeleteBooks = (bookId) => {
     axios
-      .delete(`${URL}/books/${bookId}`)
+      .delete(`${BACK_END_URL}/books/${bookId}`)
       .then((deleteResponse) => {
         if (deleteResponse.data.deletedCount === 1) {
           const newBookArray = this.state.booksData.filter(
@@ -46,10 +55,10 @@ class BestBooks extends React.Component {
       title: e.target.title.value,
       description: e.target.description.value,
       status: e.target.status.value,
-      email: e.target.email.value,
+      email: this.props.auth0.email,
     };
     axios
-      .post(`${URL}/books`, reqBody)
+      .post(`${BACK_END_URL}/books`, reqBody)
       .then((creatBookObject) => {
         this.state.booksData.push(creatBookObject.data);
         this.setState({ booksData: this.state.booksData });
@@ -67,7 +76,10 @@ class BestBooks extends React.Component {
       email: e.target.email.value,
     };
     axios
-      .put(`${URL}/books/${this.state.selectedBookDataObj._id}`, reqBody)
+      .put(
+        `${BACK_END_URL}/books/${this.state.selectedBookDataObj._id}`,
+        reqBody
+      )
       .then((updatedBookObject) => {
         const updateBookArr = this.state.booksData.map((book) => {
           if (book._id === this.state.selectedBookDataObj._id) {
@@ -86,22 +98,13 @@ class BestBooks extends React.Component {
       .catch((error) => console.log(error));
   };
 
-  handelDisplayAddModal = () => {
-    this.setState({ showAddModal: !this.state.showAddModal });
-  };
-  handelDisplayUpdateModal = (bookObj) => {
-    this.setState({
-      showUpdateModal: !this.state.showUpdateModal,
-      selectedBookDataObj: bookObj,
-    });
-  };
   componentDidMount = () => {
     axios
-      .get(`${URL}/books`)
+      .get(`${BACK_END_URL}/books/${this.props.auth0.user.email}`)
       .then((bookResponse) => {
         this.setState({ booksData: bookResponse.data });
       })
-      .catch((error) => alert(error.message));
+      .catch((error) => console.log(error));
   };
 
   render() {
@@ -142,33 +145,31 @@ class BestBooks extends React.Component {
                     <h3>{element.title}</h3>
                     <p>{element.description}</p>
                     <Row>
-                    <Col style={{margin:'auto'}}>
-                    <Button
-                      variant='success'
-                      onClick={this.handelDisplayAddModal}
-                    >
-                      Add Book
-                    </Button>
-                    </Col>
-                    <Col>
-                    <Button
-                      onClick={() => this.handelDisplayUpdateModal(element)}
-                    >
-                      Update Book
-                    </Button>
-                    </Col>
-                    <Col>
-                    <Button
-                      
-                      variant='danger'
-                      onClick={() => this.handelDeleteBooks(element._id)}
-                    >
-                      Delete Book
-                    </Button>
-                    </Col>
+                      <Col style={{ margin: 'auto' }}>
+                        <Button
+                          variant='success'
+                          onClick={this.handelDisplayAddModal}
+                        >
+                          Add Book
+                        </Button>
+                      </Col>
+                      <Col>
+                        <Button
+                          onClick={() => this.handelDisplayUpdateModal(element)}
+                        >
+                          Update Book
+                        </Button>
+                      </Col>
+                      <Col>
+                        <Button
+                          variant='danger'
+                          onClick={() => this.handelDeleteBooks(element._id)}
+                        >
+                          Delete Book
+                        </Button>
+                      </Col>
                     </Row>
                   </Carousel.Caption>
-                  
                 </Carousel.Item>
               );
             })}
@@ -191,4 +192,4 @@ class BestBooks extends React.Component {
   }
 }
 
-export default BestBooks;
+export default withAuth0(BestBooks);
