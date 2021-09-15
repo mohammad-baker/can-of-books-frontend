@@ -98,8 +98,8 @@ class BestBooks extends React.Component {
       selectedBookDataObj: bookObj,
     });
   };
-  componentDidMount = () => {
-    axios
+  componentDidMount = async() => {
+    await axios
       .get(`${BACK_END_URL}/books`)
       .then((bookResponse) => {
         this.setState({ booksData: bookResponse.data });
