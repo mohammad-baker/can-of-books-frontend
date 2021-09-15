@@ -6,8 +6,6 @@ import AddBooks from './AddBooks';
 import UpdateBooks from './UpdateBooks';
 import { withAuth0 } from '@auth0/auth0-react';
 require('dotenv').config();
-var BACK_END_URL = 'http://jm-can-of-books-backend.herokuapp.com';
-
 
 const BACK_END_URL = process.env.BACK_END_URL;
 
