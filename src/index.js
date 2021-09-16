@@ -3,10 +3,10 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { Auth0Provider } from "@auth0/auth0-react";
 var sectionStyle = {
-  backgroundImage: `url(https://www.teahub.io/photos/full/271-2719234_free-photo-backgrounds-web-page-background.jpg)`,
+  backgroundImage: `url(https://www.maxpixel.net/static/photo/1x/Leisure-Blur-Reading-Book-Background-5342680.jpg)`,
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
-  minHeight:912,
+  minHeight:913,
 };
 ReactDOM.render(
   <Auth0Provider

@@ -9,8 +9,7 @@ class Footer extends React.Component {
           style={{ marginTop: 10 }}
           collapseOnSelect
           expand='lg'
-          bg='dark'
-          variant='dark'
+          bg="light" variant="light"
         >
           <Navbar.Brand style={{ marginLeft: 'auto', marginRight: 'auto', }}>
             Jehad Abu Awwad & Mohammad Baker
