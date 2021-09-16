@@ -7,7 +7,7 @@ import UpdateBooks from './UpdateBooks';
 import { withAuth0 } from '@auth0/auth0-react';
 require('dotenv').config();
 
-const BACK_END_URL = process.env.BACK_END_URL;
+
 
 const style = {
   width: 'auto',
@@ -38,7 +38,7 @@ class BestBooks extends React.Component {
   };
   handelDeleteBooks = (bookId) => {
     axios
-      .delete(`${BACK_END_URL}/books/${bookId}`)
+      .delete(`${process.env.BACK_END_URL}/books/${bookId}`)
       .then((deleteResponse) => {
         if (deleteResponse.data.deletedCount === 1) {
           const newBookArray = this.state.booksData.filter(
@@ -59,7 +59,7 @@ class BestBooks extends React.Component {
       email: this.props.auth0.email,
     };
     axios
-      .post(`${BACK_END_URL}/books`, reqBody)
+      .post(`${process.env.BACK_END_URL}/books`, reqBody)
       .then((creatBookObject) => {
         this.state.booksData.push(creatBookObject.data);
         this.setState({ booksData: this.state.booksData });
@@ -78,7 +78,7 @@ class BestBooks extends React.Component {
     };
     axios
       .put(
-        `${BACK_END_URL}/books/${this.state.selectedBookDataObj._id}`,
+        `${process.env.BACK_END_URL}/books/${this.state.selectedBookDataObj._id}`,
         reqBody
       )
       .then((updatedBookObject) => {
@@ -111,7 +111,7 @@ class BestBooks extends React.Component {
   };
   componentDidMount = () => {
      axios
-      .get(`${BACK_END_URL}/books/${this.props.auth0.user.email}`)
+      .get(`${process.env.BACK_END_URL}/books/${this.props.auth0.user.email}`)
 
       .then((bookResponse) => {
         this.setState({ booksData: bookResponse.data });
