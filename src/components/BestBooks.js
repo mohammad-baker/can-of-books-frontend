@@ -6,9 +6,7 @@ import AddBooks from './AddBooks';
 import UpdateBooks from './UpdateBooks';
 import { withAuth0 } from '@auth0/auth0-react';
 require('dotenv').config();
-
-
-
+const BACK_END_URL=`https://jm-can-of-books-backend.herokuapp.com/books`;
 const style = {
   width: 'auto',
   height: 'auto',
@@ -38,7 +36,7 @@ class BestBooks extends React.Component {
   };
   handelDeleteBooks = (bookId) => {
     axios
-      .delete(`${process.env.BACK_END_URL}/books/${bookId}`)
+      .delete(`${BACK_END_URL}/${bookId}`)
       .then((deleteResponse) => {
         if (deleteResponse.data.deletedCount === 1) {
           const newBookArray = this.state.booksData.filter(
@@ -59,7 +57,7 @@ class BestBooks extends React.Component {
       email: this.props.auth0.email,
     };
     axios
-      .post(`${process.env.BACK_END_URL}/books`, reqBody)
+      .post(`${BACK_END_URL}`, reqBody)
       .then((creatBookObject) => {
         this.state.booksData.push(creatBookObject.data);
         this.setState({ booksData: this.state.booksData });
@@ -78,7 +76,7 @@ class BestBooks extends React.Component {
     };
     axios
       .put(
-        `${process.env.BACK_END_URL}/books/${this.state.selectedBookDataObj._id}`,
+        `${BACK_END_URL}/${this.state.selectedBookDataObj._id}`,
         reqBody
       )
       .then((updatedBookObject) => {
@@ -99,7 +97,6 @@ class BestBooks extends React.Component {
       .catch((error) => console.log(error));
   };
 
-
   handelDisplayAddModal = () => {
     this.setState({ showAddModal: !this.state.showAddModal });
   };
@@ -110,8 +107,8 @@ class BestBooks extends React.Component {
     });
   };
   componentDidMount = () => {
-     axios
-      .get(`${process.env.BACK_END_URL}/books/${this.props.auth0.user.email}`)
+    axios
+      .get(`${BACK_END_URL}/${this.props.auth0.user.email}`)
 
       .then((bookResponse) => {
         this.setState({ booksData: bookResponse.data });
