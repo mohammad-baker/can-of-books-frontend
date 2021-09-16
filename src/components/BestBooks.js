@@ -52,7 +52,7 @@ class BestBooks extends React.Component {
       title: e.target.title.value,
       description: e.target.description.value,
       status: e.target.status.value,
-      email: this.props.auth0.email,
+      email: e.target.email.value,
     };
     axios
       .post(`${BACK_END_URL}`, reqBody)
